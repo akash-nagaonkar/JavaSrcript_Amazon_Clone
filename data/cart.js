@@ -1,4 +1,4 @@
-export const cart = [
+export let cart = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: 2,
@@ -31,4 +31,8 @@ export const addToCart = (productId) => {
       quantity: quantity,
     });
   }
+};
+
+export const deleteFromCart = (productId) => {
+  cart = cart.filter((cartItem) => cartItem.id !== productId);
 };
