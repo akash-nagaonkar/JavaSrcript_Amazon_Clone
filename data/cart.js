@@ -90,3 +90,9 @@ export const updatedCount = (productId) => {
     updatedCountSelector.style.display = "none";
   }, 3000);
 };
+
+export const updateDeliveryOption = (productId, deliveryOptionId) => {
+  const productToUpdate = cart.find((cartItem) => cartItem.id === productId);
+  productToUpdate.deliveryOptionId = deliveryOptionId;
+  saveToStorage();
+};
