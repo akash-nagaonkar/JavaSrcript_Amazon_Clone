@@ -129,6 +129,7 @@ export const renderOrderSummary = () => {
 
       deleteFromCart(productId);
       updateCartQuantity();
+      renderPaymentSummary();
 
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
