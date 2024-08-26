@@ -47,3 +47,17 @@ export const deleteFromCart = (productId) => {
   cart = cart.filter((cartItem) => cartItem.id !== productId);
   saveToStorage();
 };
+
+export const updateCartQuantity = () => {
+  let quantity = cart.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
+  document.querySelector(
+    ".js-return-to-home-link"
+  ).innerHTML = `${quantity} Items`;
+};
+
+export const updateItemFromCart = (productId, newQuantity) => {
+  let productToUpdate = cart.find((cartItem) => cartItem.id === productId);
+  productToUpdate.quantity = newQuantity;
+  saveToStorage();
+  updateCartQuantity();
+};

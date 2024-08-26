@@ -71,6 +71,7 @@ const updateCartQuantity = () => {
 
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 };
+updateCartQuantity();
 
 const displayAddedMessage = (productId) => {
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
