@@ -3,6 +3,7 @@ import {
   deleteFromCart,
   updateCartQuantity,
   updateItemFromCart,
+  validateCount,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -50,6 +51,13 @@ cart.forEach((cartItem) => {
                   }">
                     Delete
                   </span>
+                </div>
+
+                <div class="validate-count-to-update js-validate-count-to-update-${
+                  productData.id
+                }">
+                </div>
+                <div class="updated-count js-updated-count-${productData.id}">
                 </div>
               </div>
 
@@ -129,20 +137,21 @@ document.querySelectorAll(".js-update-link").forEach((link) => {
 document.querySelectorAll(".js-save-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
     const productId = link.dataset.productId;
-
     const container = document.querySelector(
       `.js-cart-item-container-${productId}`
     );
-    container.classList.remove("is-editing-quantity");
-
     const quantityInput = document.querySelector(
       `.js-quantity-input-${productId}`
     );
     const newQuantity = Number(quantityInput.value);
 
-    document.querySelector(`.js-quantity-label-${productId}`).innerHTML =
-      newQuantity;
-
-    updateItemFromCart(productId, newQuantity);
+    if (newQuantity > 100 || newQuantity <= 0) {
+      validateCount(productId);
+    } else {
+      container.classList.remove("is-editing-quantity");
+      document.querySelector(`.js-quantity-label-${productId}`).innerHTML =
+        newQuantity;
+      updateItemFromCart(productId, newQuantity);
+    }
   });
 });

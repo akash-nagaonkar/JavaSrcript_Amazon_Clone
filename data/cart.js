@@ -58,6 +58,32 @@ export const updateCartQuantity = () => {
 export const updateItemFromCart = (productId, newQuantity) => {
   let productToUpdate = cart.find((cartItem) => cartItem.id === productId);
   productToUpdate.quantity = newQuantity;
-  saveToStorage();
   updateCartQuantity();
+  saveToStorage();
+  updatedCount(productId);
+};
+
+export const validateCount = (productId) => {
+  const validateCountSelector = document.querySelector(
+    `.js-validate-count-to-update-${productId}`
+  );
+  validateCountSelector.style.display = "block";
+  validateCountSelector.innerHTML =
+    "Count must be greater than 0 and less than 100!";
+
+  setTimeout(() => {
+    validateCountSelector.style.display = "none";
+  }, 3000);
+};
+
+export const updatedCount = (productId) => {
+  const updatedCountSelector = document.querySelector(
+    `.js-updated-count-${productId}`
+  );
+  updatedCountSelector.style.display = "block";
+  updatedCountSelector.innerHTML = "Count is updated successfully!";
+
+  setTimeout(() => {
+    updatedCountSelector.style.display = "none";
+  }, 3000);
 };

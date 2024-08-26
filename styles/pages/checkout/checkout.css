@@ -234,3 +234,15 @@
 .is-editing-quantity .quantity-label {
   display: none;
 }
+
+.validate-count-to-update {
+  display: none;
+  margin-top: 10px;
+  color: red;
+}
+
+.updated-count {
+  display: none;
+  margin-top: 10px;
+  color: green;
+}
