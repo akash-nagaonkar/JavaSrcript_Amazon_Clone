@@ -1,7 +1,6 @@
 import {
   cart,
   deleteFromCart,
-  updateCartQuantity,
   updateDeliveryOption,
   updateItemFromCart,
   validateCount,
@@ -121,14 +120,11 @@ export const renderOrderSummary = () => {
 
   document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 
-  updateCartQuantity();
-
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
 
       deleteFromCart(productId);
-      updateCartQuantity();
       renderPaymentSummary();
 
       const container = document.querySelector(

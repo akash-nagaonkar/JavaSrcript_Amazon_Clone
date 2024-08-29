@@ -56,6 +56,7 @@ export const updateCartQuantity = () => {
   document.querySelector(
     ".js-return-to-home-link"
   ).innerHTML = `${quantity} Items`;
+  return quantity;
 };
 
 export const updateItemFromCart = (productId, newQuantity) => {
