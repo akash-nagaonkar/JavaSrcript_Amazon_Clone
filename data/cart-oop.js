@@ -237,6 +237,4 @@ const businesscart = {
 
 businesscart.loadFromStorage();
 
-console.log(cart);
-console.log(businesscart);
-
+console.log(cart.cartItems);
