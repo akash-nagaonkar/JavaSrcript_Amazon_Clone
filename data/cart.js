@@ -37,16 +37,23 @@ export const addToCart = (productId) => {
   const quantitySelector = document.querySelector(
     `.js-quantity-selector-${productId}`
   );
-  const quantity = Number(quantitySelector.value);
 
-  if (matchedItem) {
-    matchedItem.quantity = quantity;
+  if (quantitySelector) {
+    const quantity = Number(quantitySelector.value);
+
+    if (matchedItem) {
+      matchedItem.quantity = quantity;
+    } else {
+      cart.push({
+        id: productId,
+        quantity: quantity,
+        deliveryOptionId: "1",
+      });
+    }
+
+    saveToStorage();
   } else {
-    cart.push({
-      id: productId,
-      quantity: quantity,
-      deliveryOptionId: "1",
-    });
+    console.error(`Quantity selector for product ${productId} not found.`);
   }
 
   saveToStorage();
